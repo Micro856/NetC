@@ -8,7 +8,7 @@ A script to easily install a bootc image to a disk
 - `fastfetch`
 
 # Installation
-Copy `main.py` to `/usr/share/bootcrew/netc/`
-Copy `netc` to `/bin`
-Copy `bashrc` to `/etc/skel/.bashrc` or `/home/[username]/.bashrc`
-Copy `bash_profile` to `/etc/skel/.bash_profile` or `/home/[username]/.bash_profile`
+- Copy `main.py` to `/usr/share/bootcrew/netc/`
+- Copy `netc` to `/bin`
+- Copy `bashrc` to `/etc/skel/.bashrc` or `/home/[username]/.bashrc`
+- Copy `bash_profile` to `/etc/skel/.bash_profile` or `/home/[username]/.bash_profile`
