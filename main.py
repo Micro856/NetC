@@ -31,12 +31,17 @@ def main_menu():
             if seldisk:
                 cfcommand = "sudo cfdisk" + seldisk
                 os.system(cfcommand)
+                print("Press Enter to return to NetC Main Menu...")
+                input()
                 os.system('python3 /usr/share/bootcrew/netc/main.py')
             else:
                 os.system('python3 /usr/share/bootcrew/netc/main.py')
         elif main_sel == 2:
             main_menu_exit = True
             os.system('fastfetch')
+            print("Press Enter to return to NetC Main Menu...")
+            input()
+            os.system('python3 /usr/share/bootcrew/netc/main.py')
         elif main_sel == 3:
             main_menu_exit = True
             os.system('nmtui')
@@ -129,7 +134,7 @@ def install_confirm():
         install_confirm()
 
 def begin_install():
-    command = "sudo bootc install --source-imgref " + image + " --target " + disk
+    command = "podman run --rm --privileged --pid=host -v /var/lib/containers:/var/lib/containers -v /dev:/dev -v /tmp:/tmp --security-opt label=type:unconfined_t " + image " bootc install to-disk " + disk " --source-imgref containers-storage:" + image
     os.system(command)
     os.system('python3 /usr/share/bootcrew/netc/main.py')
 
