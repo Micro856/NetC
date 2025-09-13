@@ -71,11 +71,11 @@ def power():
         main_sel = power_menu.show()
 
         if main_sel == 0:
-            print("Power off")
             power_menu_exit = True
+            os.system('sudo systemctl poweroff')
         elif main_sel == 1:
-            print("Rebooting")
             power_menu_exit = True
+            os.system('sudo systemctl reboot')
         elif main_sel == 2 or main_sel == None:
             power_menu_exit = True
             main_menu()
@@ -134,11 +134,12 @@ def install_confirm():
         install_confirm()
 
 def begin_install():
-    command1 = "podman run --rm --privileged --pid=host -v /var/lib/containers:/var/lib/containers -v /dev:/dev -v /tmp:/tmp --security-opt label=type:unconfined_t " + image
-    command2 = " bootc install to-disk " + disk
-    command3 = " --source-imgref containers-storage:" + image
-    command = command1 + command2 + command3
-    os.system(command)
+    pullcmd = "podman pull" + image
+    installcmd = "bootc install to-disk --source-imgref containers-storage:" + image + "--stateroot default --filesystem ext4 --wipe " + disk
+    os.system(pullcmd)
+    os.system(installcmd)
+    print("Press Enter to return to NetC Main Menu...")
+    input()
     os.system('python3 /usr/share/bootcrew/netc/main.py')
 
 def main():
