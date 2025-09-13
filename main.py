@@ -134,9 +134,7 @@ def install_confirm():
         install_confirm()
 
 def begin_install():
-    pullcmd = "podman pull" + image
     installcmd = "bootc install to-disk --source-imgref containers-storage:" + image + "--stateroot default --filesystem ext4 --wipe " + disk
-    os.system(pullcmd)
     os.system(installcmd)
     print("Press Enter to return to NetC Main Menu...")
     input()
