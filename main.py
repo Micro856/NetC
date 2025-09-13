@@ -134,7 +134,10 @@ def install_confirm():
         install_confirm()
 
 def begin_install():
-    command = "podman run --rm --privileged --pid=host -v /var/lib/containers:/var/lib/containers -v /dev:/dev -v /tmp:/tmp --security-opt label=type:unconfined_t " + image " bootc install to-disk " + disk " --source-imgref containers-storage:" + image
+    command1 = "podman run --rm --privileged --pid=host -v /var/lib/containers:/var/lib/containers -v /dev:/dev -v /tmp:/tmp --security-opt label=type:unconfined_t " + image
+    command2 = " bootc install to-disk " + disk
+    command3 = " --source-imgref containers-storage:" + image
+    command = command1 + command2 + command3
     os.system(command)
     os.system('python3 /usr/share/bootcrew/netc/main.py')
 
